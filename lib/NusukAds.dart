@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 final String nusukAdsAr = "assets/images/NusukGameAR.svg";
-final String nusukAdsEn = "assets/images/NusukGameEN.svg";
+final String nusukAdsEn = "assets/images/NusukGameEn.svg";
 
 class NusukAds extends StatelessWidget{
   final String linkUrl;
@@ -19,11 +19,11 @@ class NusukAds extends StatelessWidget{
       child: Center(
         child: Stack(
           children: [
-            SvgPicture.asset(langCode=='ar'? nusukAdsAr : nusukAdsEn ,fit: BoxFit.contain,width: double.infinity,),
-            IconButton(
+           Align(alignment: Alignment.topLeft,child:  IconButton(
               icon: const Icon(Icons.close),
               onPressed: () => { openUrl(linkUrl) },
-            ),
+            ),),
+            SvgPicture.asset(langCode=='ar'? nusukAdsAr : nusukAdsEn ,fit: BoxFit.cover,),
           ],
         )
       ),
