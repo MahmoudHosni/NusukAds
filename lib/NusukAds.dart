@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+final String nusukAdsAr = "assets/images/NusukGameAR.svg";
+final String nusukAdsEn = "assets/images/NusukGameEN.svg";
 
 class NusukAds extends StatelessWidget{
   final String linkUrl;
@@ -15,14 +19,23 @@ class NusukAds extends StatelessWidget{
       child: Center(
         child: Stack(
           children: [
-            SvgPicture.asset(langCode=='ar'?"assets/images/NusukGameAR.svg":"assets/images/NusukGameEN.svg",fit: BoxFit.contain,width: double.infinity,),
+            SvgPicture.asset(langCode=='ar'? nusukAdsAr : nusukAdsEn ,fit: BoxFit.contain,width: double.infinity,),
             IconButton(
               icon: const Icon(Icons.close),
-              onPressed: () => {},
+              onPressed: () => { openUrl(linkUrl) },
             ),
           ],
         )
       ),
     );
+  }
+
+  void openUrl(String url) async {
+    if (await canLaunchUrl(Uri.parse(url))) {
+      await launchUrl(Uri.parse(url));
+    } else {
+      // can't launch url, there is some error
+      throw "Could not launch $url";
+    }
   }
 }
