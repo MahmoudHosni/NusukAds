@@ -13,7 +13,7 @@ class NusukAds extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Material(child: InkWell(child: Container(
       color: Colors.transparent,
       height: 300,width: 280,
       child: Center(
@@ -21,13 +21,16 @@ class NusukAds extends StatelessWidget{
           children: [
            Align(alignment: Alignment.topLeft,child:  IconButton(
               icon: const Icon(Icons.close),
-              onPressed: () => { openUrl(linkUrl) },
+              onPressed: () => { Navigator.of(context).pop() },
             ),),
-            SvgPicture.asset(langCode=='ar'? nusukAdsAr : nusukAdsEn ,fit: BoxFit.cover,),
+            Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: SvgPicture.asset(langCode=='ar'? nusukAdsAr : nusukAdsEn ,fit: BoxFit.cover,),
+            ),
           ],
         )
       ),
-    );
+    ),onTap: ()=> openUrl(linkUrl),));
   }
 
   void openUrl(String url) async {
