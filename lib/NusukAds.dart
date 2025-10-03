@@ -13,13 +13,13 @@ class NusukAds extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Material(color: Colors.transparent,child: InkWell(child: SizedBox(
-      height: 420,width: 320,
-      child:  Stack(
+        height: 320,width: 320,
+        child:  Stack(
           children: [
-             Padding(
-                padding: const EdgeInsets.only(left: 7.0,top: 8),
-                child: Image.asset(langCode == 'ar'? nusukAdsAr : nusukAdsEn, fit: BoxFit.fill, width: 300, height: 390,package: 'nusuk_ads',),
-              ),
+            Padding(
+              padding: const EdgeInsets.only(left: 12.0,top: 12),
+              child: Image.asset(langCode == 'ar'? nusukAdsAr : nusukAdsEn, fit: BoxFit.fill, width: 300, height: 320,package: 'nusuk_ads',),
+            ),
             Positioned(
               top: 8.0,
               left: 7.0,
