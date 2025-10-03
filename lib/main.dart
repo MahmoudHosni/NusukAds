@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: NusukAds(linkUrl: '', langCode: 'ar',),
+      home: Center(child: NusukAds(linkUrl: 'https://smart.link/7wixdy51k18ld', langCode: 'ar',)),
     );
   }
 }

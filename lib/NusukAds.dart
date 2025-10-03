@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-final String nusukAdsAr = "assets/images/NusukGameAR.svg";
-final String nusukAdsEn = "assets/images/NusukGameEn.svg";
+final String nusukAdsAr = "assets/images/NusukGameAR.png";
+final String nusukAdsEn = "assets/images/NusukGameEn.png";
 
 class NusukAds extends StatelessWidget{
   final String linkUrl;
@@ -13,32 +12,47 @@ class NusukAds extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    return Material(child: InkWell(child: Container(
-      color: Colors.transparent,
-      height: 300,width: 280,
-      child: Center(
-        child: Stack(
+    return Material(color: Colors.yellow,child: InkWell(child: SizedBox(
+      height: 420,width: 300,
+      child:  Stack(
           children: [
-           Align(alignment: Alignment.topLeft,child:  IconButton(
-              icon: const Icon(Icons.close),
-              onPressed: () => { Navigator.of(context).pop() },
-            ),),
-            Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: SvgPicture.asset(langCode=='ar'? nusukAdsAr : nusukAdsEn ,fit: BoxFit.cover,),
+             Padding(
+                padding: const EdgeInsets.only(left: 7.0,top: 8),
+                child: Image.asset(langCode == 'ar'? nusukAdsAr : nusukAdsEn, fit: BoxFit.fill, width: 290, height: 390),
+              ),
+            Positioned(
+              top: 8.0,
+              left: 7.0,
+              child: Material(
+                borderRadius: BorderRadius.circular(18),
+                elevation: 2,
+                child: CircleAvatar(
+                  radius: 18,
+                  backgroundColor: Colors.black,
+                  child: IconButton(
+                    icon: const Icon(Icons.close, size: 16),
+                    color: Colors.white,
+                    onPressed: () => Navigator.of(context).pop(),
+                  ),
+                ),
+              ),
             ),
+
+
           ],
         )
-      ),
-    ),onTap: ()=> openUrl(linkUrl),));
+    ),onTap: () async => await openUrl(linkUrl),));
   }
 
-  void openUrl(String url) async {
-    if (await canLaunchUrl(Uri.parse(url))) {
-      await launchUrl(Uri.parse(url));
-    } else {
-      // can't launch url, there is some error
-      throw "Could not launch $url";
+  Future<void> openUrl(String url) async {
+    try {
+      if (await canLaunchUrl(Uri.parse(url))) {
+        await launchUrl(Uri.parse(url));
+      } else {
+        debugPrint('Could not launch $url');
+      }
+    } catch (e) {
+      debugPrint('Error launching url: $e');
     }
   }
 }
