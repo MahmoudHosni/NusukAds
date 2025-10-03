@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-final String nusukAdsAr = "packages/nusuk_ads/assets/images/NusukGameAR.png";
-final String nusukAdsEn = "packages/nusuk_ads/assets/images/NusukGameEn.png";
+final String nusukAdsAr = "assets/images/NusukGameAR.png";
+final String nusukAdsEn = "assets/images/NusukGameEn.png";
 
 class NusukAds extends StatelessWidget{
   final String linkUrl;
@@ -12,13 +12,13 @@ class NusukAds extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    return Material(color: Colors.yellow,child: InkWell(child: SizedBox(
-      height: 420,width: 300,
+    return Material(color: Colors.transparent,child: InkWell(child: SizedBox(
+      height: 420,width: 320,
       child:  Stack(
           children: [
              Padding(
                 padding: const EdgeInsets.only(left: 7.0,top: 8),
-                child: Image.asset(langCode == 'ar'? nusukAdsAr : nusukAdsEn, fit: BoxFit.fill, width: 290, height: 390,package: 'nusuk_ads',),
+                child: Image.asset(langCode == 'ar'? nusukAdsAr : nusukAdsEn, fit: BoxFit.fill, width: 300, height: 390,package: 'nusuk_ads',),
               ),
             Positioned(
               top: 8.0,
